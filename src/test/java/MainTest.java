@@ -7,15 +7,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class MainTest {
-
-//    @Test
-//    public void record() {
-//    }
-
-    @Test
-    public void read() {
-    }
-
+    
     @Test
     public void equals() throws IOException, ClassNotFoundException {
         List<Animal> animal1 = Arrays.asList(new Animal("Cow", TypeAn.HERBIVORES, 10,  Arrays.asList(new Food("Трава",5))));
