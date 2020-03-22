@@ -25,7 +25,9 @@ public class Serializable implements java.io.Serializable {
     public static void recordData(List<Animal> animals, String file) throws IOException {
 
        try (DataOutputStream outputStream = new DataOutputStream(Files.newOutputStream(Paths.get(file)))) {
+
            outputStream.writeInt(animals.size());
+
            for (Animal animal : animals) {
                outputStream.writeUTF(animal.getName());
                outputStream.writeUTF(animal.getType().name());
@@ -51,15 +53,16 @@ public class Serializable implements java.io.Serializable {
         String foodName;
         int count;
 
-        try(DataInputStream inputStream = new DataInputStream(Files.newInputStream(Paths.get(file)))){
+        try(DataInputStream inputStream = new DataInputStream(Files.newInputStream(Paths.get(file)))) {
 
             int animalCount = inputStream.readInt();
-            int foodCount = inputStream.readInt();
 
             for (int i = 0; i < animalCount; i++) {
                 name = inputStream.readUTF();
-                age = inputStream.readInt();
                 typeAn = TypeAn.valueOf(inputStream.readUTF());
+                age = inputStream.readInt();
+
+                int foodCount = inputStream.readInt();
 
                 for (int j = 0; j < foodCount; j++) {
                     foodName = inputStream.readUTF();
